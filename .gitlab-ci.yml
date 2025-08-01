@@ -1,0 +1,15 @@
+stages:
+  - check
+
+check_repository:
+  stage: check
+  image: ubuntu:20.04
+  script:
+    - apt update
+    - apt install -y git nginx
+    - git --version
+    - nginx -v
+  artifacts:
+    paths:
+      - /var/log/nginx/error.log
+    expire_in: 1 week
